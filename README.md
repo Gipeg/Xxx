@@ -56,11 +56,22 @@ class Book:
         for i, work in enumerate(self.__content, 1):
             print(f"{i}) {work}")
 
-# Тестирование класса Book
-book = Book("Антология рассказов")
-book.add_work("Рассказ 1")
-book.add_work("Рассказ 2")
-book.display_info()
-print(f"Количество произведений: {book.get_work_count()}")
+# 5.5 Класс Книга Автора
+class AuthorBook(Author, Book):
+    def __init__(self, full_name, country, title):
+        """Создает книгу с автором."""
+        Author.__init__(self, full_name, country)
+        Book.__init__(self, title)
+    
+    def display_full_info(self):
+        """Выводит ФИО автора, название книги и её содержание."""
+        print(f"Автор: {self.full_name}")
+        self.display_info()
 
-del book
+# Тестирование класса AuthorBook
+ab = AuthorBook("Александр Пушкин", "Россия", "Сказки")
+ab.add_work("Сказка о царе Салтане")
+ab.add_work("Сказка о рыбаке и рыбке")
+ab.display_full_info()
+
+del ab
